@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         // move file from temp_dir to uploads dir
 
         if(move_uploaded_file($_FILES["profile_photo"]["tmp_name"], $imagePath)){
-            $contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contactsFile)):[];
+            $contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contactsFile), true):[];
             $contacts[] = [
                     "username"=>$username,
                 "email" => $email,

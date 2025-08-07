@@ -1,6 +1,14 @@
-{
-    "username": "bongodev",
-    "email": "abdulkitindi@ee.com",
-    "phone": "12225555",
-    "image": "uploads\/1754493052_zanzibar.jpg"
-}
+[
+    {
+        "username": "bongodeveloper",
+        "email": "dev@bongo.com",
+        "phone": "12323",
+        "image": "uploads\/1754547599_hero-3.jpg"
+    },
+    {
+        "username": "bongodev",
+        "email": "abdulkitindi@ee.com",
+        "phone": "12323",
+        "image": "uploads\/1754547649_Melia-Kiwengwa.jpg"
+    }
+]

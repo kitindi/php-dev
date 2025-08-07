@@ -1,6 +1,17 @@
 <?php
 $contactsFile = "contacts.json";
-$contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contactsFile), true):[];
+$contacts = [];
+
+if (file_exists($contactsFile)) {
+    $json = file_get_contents($contactsFile);
+    $decoded = json_decode($json, true);
+
+    if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+        $contacts = $decoded;
+    } else {
+        echo "<p>Error reading contacts. Invalid JSON format.</p>";
+    }
+}
 
 
 ?>
@@ -20,13 +31,17 @@ $contacts = file_exists($contactsFile) ? json_decode(file_get_contents($contacts
 
 <a href="create.php">Create new contact</a>
 
-<ul>
-    <?php  foreach ($contacts as $contact): ?>
-    <li>
-        <img src="<?php echo $contact["image"];?>" alt="profile" height="50">
-        <?php echo "{$contact["username"]} - {$contact["email"]}"; ?>
-    </li>
-    <?php endforeach;?>
-</ul>
+<?php if (!empty($contacts)): ?>
+    <ul>
+        <?php foreach ($contacts as $contact): ?>
+            <li style="margin-bottom: 10px;">
+                <img src="<?= htmlspecialchars($contact["image"]) ?>" alt="profile" height="50">
+                <strong><?= htmlspecialchars($contact["username"]) ?></strong> - <?= htmlspecialchars($contact["email"]) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No contacts found.</p>
+<?php endif; ?>
 </body>
 </html>
